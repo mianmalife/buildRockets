@@ -1,8 +1,8 @@
 ### Javascript系列
 
-- <a href='./scripts/inhreit.md'>ES5实现继承</a>
+- <a href='./scripts/实现继承.js'>ES5实现继承</a>
 - <a>this指向相关题</a> 
-- <a>实现bind, 实现call, 实现apply</a>
+- <a href='./scripts/实现bind&apply&call&new.js'>实现bind, 实现call, 实现apply</a>
 - <a>实现new</a>
 - <a>事件机制</a>
 
