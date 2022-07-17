@@ -1,88 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flexbox</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>flexbox</title>
-</head>
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
-  .parent__box {
-    display: flex;
-    flex-direction: row;
-    /* flex-flow: row wrap; */
-    /* justify-content: space-between;
+    .parent__box {
+      display: flex;
+      flex-direction: row;
+      /* flex-flow: row wrap; */
+      /* justify-content: space-between;
     align-items: center; */
-    /* justify-content: space-around; */
-    height: 240px;
-    background-color: antiquewhite;
-    /* flex-wrap: wrap; */
-    align-items: center;
-  }
+      /* justify-content: space-around; */
+      height: 240px;
+      background-color: antiquewhite;
+      /* flex-wrap: wrap; */
+      align-items: center;
+    }
 
-  .parent__box div {
-    margin: auto 10px;
-    /* width: 300px; */
-    height: 120px;
-    background-color: azure;
-    /* margin-left: 10px;
+    .parent__box div {
+      margin: auto 10px;
+      /* width: 300px; */
+      height: 120px;
+      background-color: azure;
+      /* margin-left: 10px;
     margin-top: 10px; */
-    /* flex-grow: 1; */
-    /* flex: 1; */
-    /* flex-basis: 100px; */
-    /* flex: 1 1 400px; */
-  }
+      /* flex-grow: 1; */
+      /* flex: 1; */
+      /* flex-basis: 100px; */
+      /* flex: 1 1 400px; */
+    }
 
-  .last__div {
-    /* flex-basis: 500px; */
-    /* flex-grow: 1; */
-    /* flex-shrink: 2; */
-    /* flex: 2 !important; */
-  }
+    .last__div {
+      /* flex-basis: 500px; */
+      /* flex-grow: 1; */
+      /* flex-shrink: 2; */
+      /* flex: 2 !important; */
+    }
 
-  .last__sec div {
-    /* flex-basis: 600px; */
-    /* flex-grow: 1; */
-    /* flex-shrink: 2; */
-  }
+    .last__sec div {
+      /* flex-basis: 600px; */
+      /* flex-grow: 1; */
+      /* flex-shrink: 2; */
+    }
 
-  .min-content {
-    border: 2px solid #ccc;
-    width: min-content;
-  }
+    .min-content {
+      border: 2px solid #ccc;
+      width: min-content;
+    }
 
-  .max-content {
-    width: max-content;
-  }
+    .max-content {
+      width: max-content;
+    }
 
-  .max-parent {
-    width: 100px;
-    border: 2px solid #ccc;
-  }
-</style>
+    .max-parent {
+      width: 100px;
+      border: 2px solid #ccc;
+    }
+  </style>
 
-<body>
-  <div class="parent__box">
-    <div>hello flexbox1</div>
-    <div>hello flexbox2</div>
-    <div>hello flexbox3</div>
-    <div>hello flexbox4</div>
-    <div>hello flexbox5</div>
-    <div>hello flexbox6</div>
-    <div>hello flexbox7</div>
-    <div class="last__sec">hello flexbox8</div>
-    <div class="last__div">hello flexbox9</div>
-  </div>
-  <div class="min-content">hello world hello china hello chinesePeople 你好你好你好你好你好</div>
-  <div class="max-parent">
-    <div class="max-content">hello world hello china hello chinesePeople</div>
-  </div>
-</body>
-
+  <body>
+    <div class="parent__box">
+      <div>hello flexbox1</div>
+      <div>hello flexbox2</div>
+      <div>hello flexbox3</div>
+      <div>hello flexbox4</div>
+      <div>hello flexbox5</div>
+      <div>hello flexbox6</div>
+      <div>hello flexbox7</div>
+      <div class="last__sec">hello flexbox8</div>
+      <div class="last__div">hello flexbox9</div>
+    </div>
+    <div class="min-content">
+      hello world hello china hello chinesePeople 你好你好你好你好你好
+    </div>
+    <div class="max-parent">
+      <div class="max-content">hello world hello china hello chinesePeople</div>
+    </div>
+    <input type="text" />
+  </body>
 </html>

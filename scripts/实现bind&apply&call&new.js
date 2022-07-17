@@ -4,62 +4,62 @@
 // 3. 删除该函数
 // "use strict";
 Function.prototype.myCall = function (ctx) {
-  let context = ctx || window;
-  let args = [];
+  let context = ctx || window
+  let args = []
   for (let i = 1, len = arguments.length; i < len; i++) {
-    args.push(arguments[i]);
+    args.push(arguments[i])
   }
-  context.fn = this;
+  context.fn = this
   // eval("ctx.fn(" + args + ")");
-  const res = context.fn(...args);
-  delete context.fn;
-  return res;
-};
+  const res = context.fn(...args)
+  delete context.fn
+  return res
+}
 
 Function.prototype.myApply = function (ctx, arr) {
-  let context = Object(ctx) || window;
-  context.fn = this;
-  let result;
+  let context = Object(ctx) || window
+  context.fn = this
+  let result
   if (!arr) {
-    result = context.fn();
+    result = context.fn()
   } else {
-    let args = [];
+    let args = []
     for (let i = 0, len = arr.length; i < len; i++) {
-      args.push(arr[i]);
+      args.push(arr[i])
     }
-    result = context.fn(...args);
+    result = context.fn(...args)
   }
-  delete context.fn;
-  return result;
-};
+  delete context.fn
+  return result
+}
 
 Function.prototype.myBind = function (context) {
-  if (typeof this !== "function") {
-    throw new Error("错了, 函数才有bind");
+  if (typeof this !== 'function') {
+    throw new Error('错了, 函数才有bind')
   }
-  let selfs = this;
-  const slist = Array.prototype.slice.call(arguments, 1);
-  let FP = function () {};
+  let selfs = this
+  const slist = Array.prototype.slice.call(arguments, 1)
+  let FP = function () {}
   let fb = function () {
-    console.log(this, FP);
-    const last = Array.prototype.slice.call(arguments);
-    return selfs.apply(this instanceof FP ? this : context, slist.concat(last));
-  };
-  FP.prototype = this.prototype;
-  fb.prototype = new FP();
-  return fb;
-};
+    console.log(this, FP)
+    const last = Array.prototype.slice.call(arguments)
+    return selfs.apply(this instanceof FP ? this : context, slist.concat(last))
+  }
+  FP.prototype = this.prototype
+  fb.prototype = new FP()
+  return fb
+}
 
 let obj = {
   a: 1,
-};
+}
 
 function Test1(name, age) {
   return {
     name,
     age,
     a: this.a,
-  };
+  }
 }
 
 // const tt = Test1.bind(obj, "bb");
@@ -70,23 +70,23 @@ function Test1(name, age) {
 // console.log(result1);
 // const result2 = Test1.myApply(obj, ["haha", 18]);
 // console.log(result2);
-const result3 = Test1.myBind(obj, "kaka");
-const r = new result3("newparams");
-console.log(r);
+const result3 = Test1.myBind(obj, 'kaka')
+const r = new result3('newparams')
+console.log(r)
 // result3("newparams");
 // console.log(result3("newparams"));
 
 // 实现new
 function newIns() {
-  const Constructor = [].shift.call(arguments);
-  let obj = Object.create(Constructor.prototype);
+  const Constructor = [].shift.call(arguments)
+  let obj = Object.create(Constructor.prototype)
   // obj.__proto__ = Constructor.prototype;
-  let result = Constructor.apply(obj, arguments);
-  return result instanceof Object ? result : obj;
+  let result = Constructor.apply(obj, arguments)
+  return result instanceof Object ? result : obj
 }
 
 function Person(name, age) {
-  this.name = name;
+  this.name = name
   // return {
   //   age,
   //   name,
@@ -95,20 +95,20 @@ function Person(name, age) {
   return function () {
     return {
       name,
-    };
-  };
+    }
+  }
 }
-Person.prototype.say = "say";
+Person.prototype.say = 'say'
 Person.prototype.onHi = function () {
-  console.log(this, "this");
-  console.log("hi," + this.name);
-};
+  console.log(this, 'this')
+  console.log('hi,' + this.name)
+}
 
-const man = newIns(Person, "ZH", 18);
-console.log(man.name);
-console.log(man.age);
-console.log(man.say);
-console.log(man.height);
-console.log(man.habit);
-console.log(man());
+const man = newIns(Person, 'ZH', 18)
+console.log(man.name)
+console.log(man.age)
+console.log(man.say)
+console.log(man.height)
+console.log(man.habit)
+console.log(man())
 // man.onHi();

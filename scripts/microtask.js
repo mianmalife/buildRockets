@@ -1,15 +1,15 @@
-const fs = require("fs");
-const path = require("path");
-const n = Date.now();
-fs.readFile(path.resolve(__dirname, "./call.js"), (err, data) => {
-  if (err) return;
-  console.log(Date.now() - n, "fs");
-  console.log(err, data);
-});
+// const fs = require("fs");
+// const path = require("path");
+// const n = Date.now();
+// fs.readFile(path.resolve(__dirname, "./call.js"), (err, data) => {
+//   if (err) return;
+//   console.log(Date.now() - n, "fs");
+//   console.log(err, data);
+// });
 
-setTimeout(() => {
-  console.log(Date.now() - n, "timeout");
-}, 0);
+// setTimeout(() => {
+//   console.log(Date.now() - n, "timeout");
+// }, 0);
 // console.log("lesson one");
 // const p1 = () => {
 //   return new Promise((resolve) => {
@@ -77,15 +77,15 @@ setTimeout(() => {
 
 // 微任务不在其所处函数退出时，而是在主程序退出时被执行
 
-// console.log(1);
-// new Promise(() => {
-//   console.log(2);
-// });
-// new Promise((resolve, reject) => {
-//   resolve();
-// }).then(() => {
-//   console.log(4);
-// });
-// console.log(3);
+console.log(1);
+new Promise(() => {
+  console.log(2);
+});
+new Promise((resolve, reject) => {
+  resolve();
+}).then(() => {
+  console.log(4);
+});
+console.log(3);
 
 // 1 2 3 4
