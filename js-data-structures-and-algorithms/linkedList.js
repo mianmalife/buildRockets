@@ -156,6 +156,16 @@ function LinkedList() {
     // 返回节点
     return current
   }
+
+  // size方法
+  LinkedList.prototype.size = function () {
+    return this.length
+  }
+
+  // isEmpty
+  LinkedList.prototype.isEmpty = function () {
+    return this.length === 0
+  }
 }
 
 const linked = new LinkedList()
@@ -178,3 +188,5 @@ console.log(linked.remove('naruto'))
 linked.append('konan')
 console.log(linked.update(1, 'newKakashi'))
 console.log(linked)
+console.log(linked.isEmpty())
+console.log(linked.size())
