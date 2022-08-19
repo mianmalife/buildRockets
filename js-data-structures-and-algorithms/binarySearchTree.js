@@ -82,6 +82,55 @@ function BinarySearchTree() {
       handler(node.key)
     }
   }
+
+  // 查找最大值
+  BinarySearchTree.prototype.max = function () {
+    let node = this.root
+    while (node.right !== null) {
+      node = node.right
+    }
+    return node.key
+  }
+
+  // 查找最小值
+  BinarySearchTree.prototype.min = function () {
+    let node = this.root
+    while (node.left !== null) {
+      node = node.left
+    }
+    return node.key
+  }
+
+  // 搜索
+  BinarySearchTree.prototype.search = function (key) {
+    return this.searchNode(this.root, key)
+  }
+
+  BinarySearchTree.prototype.searchNode = function (node, key) {
+    if (node === null) return false
+    if (node.key > key) {
+      return this.searchNode(node.left, key)
+    } else if (node.key < key) {
+      return this.searchNode(node.right, key)
+    } else {
+      return node.key
+    }
+  }
+
+  // 搜素-循环实现
+  BinarySearchTree.prototype.searchWhile = function (key) {
+    let node = this.root
+    while (node !== null) {
+      if (node.key > key) {
+        node = node.left
+      } else if (node.key < key) {
+        node = node.right
+      } else {
+        return node.key
+      }
+    }
+    return null
+  }
 }
 
 let bstStr = ''
@@ -114,3 +163,7 @@ console.log(bstStr) // 3 5 6 7 8 9 10 11 12 13 14 15 18 20 25
 bstStr = ''
 bst.postOrderTraversal(handler)
 console.log(bstStr) // 3 6 5 8 10 9 7 12 14 13 18 25 20 15 11
+console.log(bst.max()) // 25
+console.log(bst.min()) // 3
+console.log(bst.search(10)) // 10
+console.log(bst.searchWhile(10)) // 10
