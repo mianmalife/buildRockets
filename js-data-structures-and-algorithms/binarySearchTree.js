@@ -134,37 +134,55 @@ function BinarySearchTree() {
 
   // 删除操作
   BinarySearchTree.prototype.remove = function (key) {
+    // 查找到的节点
     let current = this.root
+    // 查找到的节点的父节点
     let parent = null
+    // 是否是左节点
     let isLeftChild = true
+    // 循环开始
     while (current.key !== key) {
       parent = current
+      // 向左查找
       if (current.key > key) {
         isLeftChild = true
         current = current.left
       } else {
+        // 向右查找
         isLeftChild = false
         current = current.right
       }
+      // 没有查找节点 直接返回null
       if (current === null) return false
     }
+    // 跳出循环说明查找到了节点
+    // 要删除的节点没有子节点
     if (current.left === null && current.right === null) {
+      // 是根节点 直接赋值为null
       if (current === this.root) {
         this.root = null
       } else if (isLeftChild) {
+        // 是左子节点
         parent.left = null
       } else {
+        // 是右子节点
         parent.right = null
       }
+      // 要删除的节点有一个子节点
+      // 有一个右子节点 / 有一个左子节点
     } else if (current.left === null) {
+      // 是根节点 则根节点赋值为右节点
       if (current === this.root) {
         this.root = current.right
       } else if (isLeftChild) {
+        // 不是根节点 但是左节点 要删除的节点有一个右节点
         parent.left = current.right
       } else {
+        // 不是根节点 但是右节点 要删除的节点有一个右节点
         parent.right = current.right
       }
     } else if (current.right === null) {
+      // 和上一部分逻辑相反
       if (current === this.root) {
         this.root = current.left
       } else if (isLeftChild) {
@@ -172,7 +190,43 @@ function BinarySearchTree() {
       } else {
         parent.right = current.left
       }
+    } else {
+      // 要删除的节点有两个子节点
+      let successor = this.getSuccessor(current)
+      if (this.root === current) {
+        this.root = successor
+      } else if (isLeftChild) {
+        parent.left = successor
+      } else {
+        parent.right = successor
+      }
+      successor.left = current.left
     }
+    return null
+  }
+
+  // 获取前驱或者后继节点用来替换要删除的节点current
+  // 前驱: 比current小一点点的节点
+  // 后继: 比current大一点点的节点
+
+  // 这里寻找后继节点
+  BinarySearchTree.prototype.getSuccessor = function (delNode) {
+    let successsorParent = delNode
+    let successor = delNode
+    let current = delNode.right
+
+    while (current !== null) {
+      successsorParent = successor
+      successor = current
+      current = current.left
+    }
+
+    // 如果后继节点不是删除节点的右节点
+    if (successor !== delNode.right) {
+      successsorParent.left = successor.right
+      successor.right = delNode.right
+    }
+    return successor
   }
 }
 
@@ -210,3 +264,23 @@ console.log(bst.max()) // 25
 console.log(bst.min()) // 3
 console.log(bst.search(10)) // 10
 console.log(bst.searchWhile(10)) // 10
+
+bst.remove(10)
+bstStr = ''
+bst.midOrderTraversal(handler)
+console.log(bstStr) // 3 5 6 7 8 9 11 12 13 14 15 18 20 25
+
+bst.remove(25)
+bstStr = ''
+bst.midOrderTraversal(handler)
+console.log(bstStr) // 3 5 6 7 8 9 11 12 13 14 15 18 20
+
+bst.remove(3)
+bstStr = ''
+bst.midOrderTraversal(handler)
+console.log(bstStr) // 5 6 7 8 9 11 12 13 14 15 18 20
+
+bst.remove(11)
+bstStr = ''
+bst.midOrderTraversal(handler) // 5 6 7 8 9 12 13 14 15 18 20
+console.log(bstStr)
