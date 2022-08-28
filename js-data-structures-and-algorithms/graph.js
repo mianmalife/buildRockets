@@ -111,6 +111,25 @@ function Graph() {
       colors[v] = 'black'
     }
   }
+
+  // 深度优先搜索
+  Graph.prototype.dfs = function (initV, handler) {
+    let colors = this.initialColor()
+    this.dfsVisit(initV, colors, handler)
+  }
+
+  Graph.prototype.dfsVisit = function (v, colors, handler) {
+    colors[v] = 'gray'
+    handler(v)
+    let vList = this.edge.get(v)
+    for (let i = 0; i < vList.length; i++) {
+      let item = vList[i]
+      if (colors[item] === 'white') {
+        this.dfsVisit(item, colors, handler)
+      }
+    }
+    colors[v] = 'black'
+  }
 }
 
 const vertex = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
@@ -143,3 +162,8 @@ graph.bfs(graph.vertexes[0], function (v) {
   bfsStr += v + ' '
 })
 console.log(bfsStr) // A B C D E F G H I
+bfsStr = ''
+graph.dfs(graph.vertexes[0], function (v) {
+  bfsStr += v + ' '
+})
+console.log(bfsStr) // A B E I F C D G H
