@@ -52,6 +52,24 @@ function ArrayList() {
       this.swap(min, j)
     }
   }
+
+  // 插入排序
+  // 效率比冒泡排序和选择排序效率都高
+  // 比较次数或者复制次数最多 1+2+3+...+n-1  --> n*(n-1)/2  平均比较次数 n*(n-1)/4
+  ArrayList.prototype.insertionSort = function () {
+    const len = this.array.length
+    // 外层循环 从1开始分别和前面已经排序的项比较
+    for (let i = 1; i < len; i++) {
+      const temp = this.array[i]
+      let j = i
+      // 因为不知道要和前面的项比较几次 所有用while比较好
+      while (this.array[j - 1] > temp && j > 0) {
+        this.array[j] = this.array[j - 1]
+        j--
+      }
+      this.array[j] = temp
+    }
+  }
 }
 
 let list = new ArrayList()
@@ -65,8 +83,9 @@ list.insert(14)
 list.insert(9)
 list.insert(8)
 list.insert(18)
-console.log(list.array)
+// console.log(list.array)
 // list.bubbleSort()
 // console.log(list.toString()) // 1 2 8 9 10 11 13 14 18 22
-list.selectionSort()
+// list.selectionSort()
+list.insertionSort()
 console.log(list.toString()) // 1 2 8 9 10 11 13 14 18 22
