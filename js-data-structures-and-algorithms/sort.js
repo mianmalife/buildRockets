@@ -70,9 +70,32 @@ function ArrayList() {
       this.array[j] = temp
     }
   }
+
+  // 希尔排序
+  ArrayList.prototype.shellSort = function () {
+    const len = this.array.length
+    // 增量(间隔)
+    let gap = Math.floor(len / 2)
+    while (gap >= 1) {
+      for (let i = gap; i < len; i++) {
+        const temp = this.array[i]
+        let j = i
+        while (this.array[j - gap] > temp && j > gap - 1) {
+          this.array[j] = this.array[j - gap]
+          j -= gap
+        }
+        this.array[j] = temp
+      }
+      gap = Math.floor(gap / 2)
+    }
+  }
 }
 
 let list = new ArrayList()
+// list.insert(3)
+// list.insert(4)
+// list.insert(5)
+// list.insert(1)
 list.insert(10)
 list.insert(2)
 list.insert(22)
@@ -83,9 +106,12 @@ list.insert(14)
 list.insert(9)
 list.insert(8)
 list.insert(18)
+list.insert(36)
+list.insert(1)
 // console.log(list.array)
 // list.bubbleSort()
 // console.log(list.toString()) // 1 2 8 9 10 11 13 14 18 22
 // list.selectionSort()
-list.insertionSort()
-console.log(list.toString()) // 1 2 8 9 10 11 13 14 18 22
+// list.insertionSort()
+list.shellSort()
+console.log(list.toString()) // 1 1 2 8 9 10 11 13 14 18 22 36
