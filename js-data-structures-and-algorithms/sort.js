@@ -89,6 +89,47 @@ function ArrayList() {
       gap = Math.floor(gap / 2)
     }
   }
+
+  // 快速排序
+  // 选择枢纽
+  ArrayList.prototype.middle = function (left, right) {
+    const center = Math.floor((left + right) / 2)
+    if (this.array[left] > this.array[center]) {
+      this.swap(left, center)
+    }
+    if (this.array[left] > this.array[right]) {
+      this.swap(left, right)
+    }
+    if (this.array[center] > this.array[right]) {
+      this.swap(center, right)
+    }
+    this.swap(center, right - 1)
+    return this.array[right - 1]
+  }
+
+  ArrayList.prototype.quick = function (left, right) {
+    if (left >= right) return
+    const pivot = this.middle(left, right)
+    let i = left
+    let j = right - 1
+    while (i < j) {
+      while (this.array[++i] < pivot) {}
+      while (this.array[--j] > pivot) {}
+      if (i < j) {
+        this.swap(i, j)
+      } else {
+        break
+      }
+    }
+    this.swap(i, right - 1)
+    this.quick(left, i - 1)
+    this.quick(i + 1, right)
+  }
+
+  // 2. 快速排序的实现
+  ArrayList.prototype.quickSort = function () {
+    this.quick(0, this.array.length - 1)
+  }
 }
 
 let list = new ArrayList()
@@ -113,5 +154,6 @@ list.insert(1)
 // console.log(list.toString()) // 1 2 8 9 10 11 13 14 18 22
 // list.selectionSort()
 // list.insertionSort()
-list.shellSort()
+// list.shellSort()
+list.quickSort()
 console.log(list.toString()) // 1 1 2 8 9 10 11 13 14 18 22 36
