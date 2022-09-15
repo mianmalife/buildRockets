@@ -8,7 +8,7 @@
   - <a href='https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_DOM_API/Microtask_guide'>在 JavaScript 中通过 queueMicrotask() 使用微任务</a>
   - <a href='https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/'>Node.js 事件循环</a>
 - <a href='./js-data-structures-and-algorithms/'>基本数据结构 javascript 版</a>
-- <a>实现 deepCopy</a>
+- <a href='./scripts/deepClone.js'>实现 deepCopy</a>
 
 ### HTML&CSS 系列
 
