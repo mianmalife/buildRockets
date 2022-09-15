@@ -3,6 +3,7 @@
 // JSON.parse JSON.stringify 不能复制undefined, Symbol
 // 递归
 // lodash deepClone
+// immer.js  只递归改变 变了的属性  其余直接引用  Proxy
 
 const example1 = [1, 2, 3, 4]
 const res = Object.assign([], example1)
@@ -40,3 +41,18 @@ const example4 = { a: { c: 1 }, b: 2, d: undefined, e: Symbol() }
 const copyExample4 = deepClone(example4)
 copyExample4.a.c = 'c edit'
 console.log(copyExample4, example4)
+
+const objW = { a: 3, b: { c: 2 } }
+const w1 = new Proxy(objW, {
+  get(target, property, receiver) {
+    console.log(target, property, receiver, 'get')
+    return target[property]
+  },
+  set(target, property, value, receiver) {
+    console.log(target, property, value, receiver, 'set')
+    target[property] = value
+    return true
+  },
+})
+w1.a = 4
+console.log(w1.a, 'wa', objW)
