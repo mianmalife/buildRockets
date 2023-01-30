@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B</title>
+  </head>
+  <body>
+    <button>发送消息给A</button>
+    <script>
+      window.name = 'B'
+      window.onbeforeunload = function (e) {
+        window.open('openA.html#close', 'A')
+        return '确定离开此页吗？'
+      }
+    </script>
+  </body>
+</html>
