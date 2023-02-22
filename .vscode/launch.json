@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "Launch Program",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}\\scripts\\有效括号匹配.js"
+      "program": "${workspaceFolder}\\scripts\\选择排序.js"
     }
   ]
 }
