@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>swiper</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+    <style>
+      .swiper {
+        width: 600px;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="./swiper.js"></script>
+    <script>
+      const data = [
+        {
+          src: 'https://images.dog.ceo/breeds/dingo/n02115641_8150.jpg',
+          id: 1,
+        },
+        {
+          src: 'https://images.dog.ceo/breeds/kuvasz/n02104029_2150.jpg',
+          id: 2,
+        },
+        {
+          src: 'https://images.dog.ceo/breeds/poodle-miniature/n02113712_438.jpg',
+          id: 3,
+        },
+      ]
+      const swipe = new SwiperSix('horizontal', true, data)
+      const { doc } = swipe.initDom()
+      document.body.appendChild(doc)
+      const { inst } = swipe.initSwiper('.swiper')
+      inst.on('click', (s, e) => {
+        console.log(data[s.realIndex], e)
+      })
+    </script>
+    <script></script>
+  </body>
+</html>
